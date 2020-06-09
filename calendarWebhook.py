@@ -111,7 +111,7 @@ def main():
     # save the new list of events (all in the next X minutes)
     # they have all been shown (either now or before, so this is our new list)
     with open('sentEvents', 'wb') as fp:
-    pickle.dump(sentEventsNew, fp)
+        pickle.dump(sentEventsNew, fp)
     
 if __name__ == '__main__':
     main()
