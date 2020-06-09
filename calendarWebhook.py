@@ -13,13 +13,14 @@ from oauth2client.file import Storage
 
 import datetime
 
+print('start')
 # your calendar ID. You can find it in the settings of the calendar
 calendarId = os.environ['CALENDAR_ID']
-
+print('calendarId '+ calendarId)
 # the url where the webhook should be sent. You can find it when you create
 # an incoming webhook (after you press save) in rocketchat->Administration->integrations
 webhook_url = os.environ['WEBHOOK_URL']
-
+print('webhook_url '+ webhook_url)
 # the timezone in which you want the events to appear. Example: "Europe/Athens" or "Europe/Amsterdam" or "Asia/Tokyo"
 timeZone = 'America/Sao_Paulo'
 
