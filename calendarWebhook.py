@@ -14,14 +14,14 @@ from oauth2client.file import Storage
 import datetime
 
 # your calendar ID. You can find it in the settings of the calendar
-calendarId = ''
+calendarId = os.environ['CALENDAR_ID']
 
 # the url where the webhook should be sent. You can find it when you create
 # an incoming webhook (after you press save) in rocketchat->Administration->integrations
-url = ''
+webhook_url = os.environ['WEBHOOK_URL']
 
 # the timezone in which you want the events to appear. Example: "Europe/Athens" or "Europe/Amsterdam" or "Asia/Tokyo"
-timeZone = ''
+timeZone = 'America/Sao_Paulo'
 
 try:
     import argparse
@@ -32,7 +32,7 @@ except ImportError:
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/calendar-python-quickstart.json
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
-CLIENT_SECRET_FILE = 'client_secret.json'
+CLIENT_SECRET_FILE = 'credentials.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 
 
@@ -106,12 +106,12 @@ def main():
         	# print(start, event['summary'])
         	payload = json.dumps(event)
         	# POST with form-encoded data
-        	r = requests.post(url, data=payload)
+        	r = requests.post(webhook_url, data=payload)
         
     # save the new list of events (all in the next X minutes)
     # they have all been shown (either now or before, so this is our new list)
     with open('sentEvents', 'wb') as fp:
-		pickle.dump(sentEventsNew, fp)
+	   pickle.dump(sentEventsNew, fp)
 	
 if __name__ == '__main__':
     main()

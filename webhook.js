@@ -49,32 +49,36 @@ class Script {
   process_incoming_request({ request }) {
 
 
-    //console is a global helper to improve debug
+  //console is a global helper to improve debug
 	// console.log(request.content);
     
-    var myContent = request.content; 
+  var myContent = request.content; 
      
-    if (myContent.start.dateTime) {
+  if (myContent.start.dateTime) {
 		var dateStart  	= new Date(myContent.start.dateTime);
 	} else {
 		var dateStart  	= new Date(myContent.start.date);	
 	}
+
 	var dateStartText 	= getFormattedDate(dateStart,2);
 	
-    if (myContent.end.dateTime) {
+  if (myContent.end.dateTime) {
 		var dateEnd  	= new Date(myContent.end.dateTime);
 	} else {
 		var dateEnd  	= new Date(myContent.end.date);	
 	}
+
 	var dateEndtText 	= getFormattedDate(dateEnd,2);
 
 	var duration = 	dateDiff('n', dateStart, dateEnd);
 	var durationText;
+
 	if (duration < 300) {
 		durationText = duration + ' minutes ';
 	} else {
 		duration = 	dateDiff('h', dateStart, dateEnd);
 		durationText = duration + ' hours ';	
+
 		if (duration > 24) {
 			duration = 	dateDiff('d', dateStart, dateEnd);
 			durationText = durationText + ' ( ' + duration + ' days )';	
@@ -85,15 +89,18 @@ class Script {
     var myText = myContent.organizer.displayName + " Calendar Event \n";
     myText = myText + 'Summary:  *' + myContent.summary + '*\n';
     myText = myText + 'Start:    *' + dateStartText +'*\n';    	
-	myText = myText + 'End:    *' + dateEndtText +'*\n';     
+	  myText = myText + 'End:    *' + dateEndtText +'*\n';     
     myText = myText + 'Duration:      *' + durationText + ' * \n';
     myText = myText + 'Link:	 ' + myContent.htmlLink + '\n';
+
     if (myContent.description) {
     	myText = myText + 'Description:      *' + myContent.description + '*\n';
     }
+
     if (myContent.hangoutLink) {
     	myText = myText + 'Hangout:      ' + myContent.hangoutLink + '\n';    	
     }
+    
     if (myContent.location) {
     	myText = myText + 'Location:      *' + myContent.location + '*\n';    	
     }
