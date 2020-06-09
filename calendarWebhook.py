@@ -1,5 +1,4 @@
-from __future__
-import print_function
+from __future__ import print_function
 import httplib2
 import os
 import requests
@@ -7,14 +6,10 @@ import json
 import pickle
 import os.path
 
-from apiclient
-import discovery
-from oauth2client
-import client
-from oauth2client
-import tools
-from oauth2client.file
-import Storage
+from apiclient import discovery
+from oauth2client import client
+from oauth2client import tools
+from oauth2client.file import Storage
 
 import datetime
 
